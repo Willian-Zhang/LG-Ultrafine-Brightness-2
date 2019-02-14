@@ -1,4 +1,4 @@
-# LG-Ultrafine-Brightness
+# LG-Ultrafine-Brightness 2
 
 A tool to adjust brightness of LG Ultrafine 4k/5K on **Windows** without the help of Bootcamp.
 
@@ -11,7 +11,7 @@ Thanks @csujedihy, @unknownzerx.
 The original tool was unable to with simple option or hotkey activation, so here it is.
 
 ## Download
-[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/2.0/brightness2.zip)
+[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/2.1/brightness-2-1.zip)
 
 ## Usage
 Just double click.
@@ -31,10 +31,14 @@ valid <option> arguments: - + [ ] 0 9 p
     Example: settings - Hotkeys - + - Action - Run - <Path to `brightness.+.exe`>
 - Or any other hotkey applications with `Run...` capabilities
 
-## Development
-### TODO
-- have it not poping up any window, on running the app, when there's no message to show up.
 
+## History 
+- 2.1
+    have it not poping up any window, on running the app, when there's no message to show up.
+- 2.0
+    this branch
+
+## Development
 ### Build
 
 1. Open the `sln` file by Visual Studio.
