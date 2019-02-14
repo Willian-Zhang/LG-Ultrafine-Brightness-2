@@ -1,27 +1,38 @@
 # LG-Ultrafine-Brightness
 
-A tool to adjust brightness of LG Ultrafine 4k/5K on Windows without the help of Bootcamp. I built my own PC and made this tool to adjust brightness through my PC.
+A tool to adjust brightness of LG Ultrafine 4k/5K on Windows without the help of Bootcamp.
 
 The program simply send set feature report to the device via USB and then the LG 4/5K monitor adjust the brightness upon receiving such reports.
 
-This project is derived from [https://github.com/unknownzerx/lguf-brightness](https://github.com/unknownzerx/lguf-brightness). 
+This project is derived from [https://github.com/csujedihy/LG-Ultrafine-Brightness](https://github.com/csujedihy/LG-Ultrafine-Brightness) which is derived from [https://github.com/unknownzerx/lguf-brightness](https://github.com/unknownzerx/lguf-brightness).
 
-Thanks @unknownzerx.
+Thanks @csujedihy, @unknownzerx.
 
-The original tool was unable to adjust brightness in Windows 10 and I also made some minor improvements to it like showing current brightness and efficiency while adjusting.
+The original tool was unable to with simple option or hotkey activation, so here it is.
+
 
 ### Linux
 Please go to this repo [https://github.com/velum/lguf-brightness](https://github.com/velum/lguf-brightness).
 
 ### Usage
+Just double click.
 
+#### want more details?
+Run application as `brightness.exe <option>` or `brightness.<option>.exe`
 ```
-Press '-' or '=' to adjust brightness.
-Press '[' or: ']' to fine tune.
-Press 'p' to use the minimum brightness
-Press '' to use the maximum brightness
-Press 'q' to quit.
+valid <option> arguments: - + [ ] 0 9 p
+'-' or '+' to adjust brightness.
+'[' or: ']' to fine tune.
+'p' to print infomation
+'0' or '9' to use the minimium or maximum brightness
 ```
+#### works best with
+- [3RVX](https://3rvx.com/)
+    Example: settings - Hotkeys - + - Action - Run - <Path to `brightness.+.exe`>
+- Or any other hotkey applications with `Run...` capabilities
+
+### TODO
+- have it not poping up any window, on running the app, when there's no message to show up.
 
 ### Build
 
@@ -29,4 +40,4 @@ Press 'q' to quit.
 2. Select `x64` configuration.
 3. Build!
 
-Note that I put the hidapi.dll in the project and if you don't believe it's secure, you can build a new one (x64) and replace it.
+csujedihy: Note that I put the hidapi.dll in the project and if you don't believe it's secure, you can build a new one (x64) and replace it.
