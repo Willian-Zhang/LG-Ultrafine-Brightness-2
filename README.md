@@ -1,6 +1,6 @@
 # LG-Ultrafine-Brightness
 
-A tool to adjust brightness of LG Ultrafine 4k/5K on Windows without the help of Bootcamp.
+A tool to adjust brightness of LG Ultrafine 4k/5K on **Windows** without the help of Bootcamp.
 
 The program simply send set feature report to the device via USB and then the LG 4/5K monitor adjust the brightness upon receiving such reports.
 
@@ -10,14 +10,13 @@ Thanks @csujedihy, @unknownzerx.
 
 The original tool was unable to with simple option or hotkey activation, so here it is.
 
+## Download
+[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/2.0/brightness2.zip)
 
-### Linux
-Please go to this repo [https://github.com/velum/lguf-brightness](https://github.com/velum/lguf-brightness).
-
-### Usage
+## Usage
 Just double click.
 
-#### want more details?
+### want more details?
 Run application as `brightness.exe <option>` or `brightness.<option>.exe`
 ```
 valid <option> arguments: - + [ ] 0 9 p
@@ -26,11 +25,13 @@ valid <option> arguments: - + [ ] 0 9 p
 'p' to print infomation
 '0' or '9' to use the minimium or maximum brightness
 ```
-#### works best with
+
+### works best with
 - [3RVX](https://3rvx.com/)
     Example: settings - Hotkeys - + - Action - Run - <Path to `brightness.+.exe`>
 - Or any other hotkey applications with `Run...` capabilities
 
+## Development
 ### TODO
 - have it not poping up any window, on running the app, when there's no message to show up.
 
@@ -41,3 +42,6 @@ valid <option> arguments: - + [ ] 0 9 p
 3. Build!
 
 csujedihy: Note that I put the hidapi.dll in the project and if you don't believe it's secure, you can build a new one (x64) and replace it.
+
+## Linux
+Please go to this repo [https://github.com/velum/lguf-brightness](https://github.com/velum/lguf-brightness).
