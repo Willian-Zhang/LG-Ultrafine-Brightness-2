@@ -11,7 +11,7 @@ Thanks @csujedihy, @unknownzerx.
 The original tool was unable to with simple option or hotkey activation, so here it is.
 
 ## Download
-[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/2.1/brightness-2-1.zip)
+[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/v2.1/brightness-2-1.zip)
 
 ## Usage
 Just double click.
