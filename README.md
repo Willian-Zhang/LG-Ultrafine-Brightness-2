@@ -11,13 +11,13 @@ Thanks @csujedihy, @unknownzerx.
 The original tool was unable to with simple option or hotkey activation, so here it is.
 
 ## Download
-[link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/v2.1/brightness-2-1.zip)
+[Link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/v2.1/brightness-2-1.zip)
 
 ## Usage
 Just double click.
 
-### want more details?
-Run application as `brightness.exe <option>` or `brightness.<option>.exe`
+### Want more details?
+Run application as `LG-Ultrafine-Brightness.exe <option>` (shortcut) or `LG-Ultrafine-Brightness.<option>.exe` (rename)
 ```
 valid <option> arguments: - + [ ] 0 9 p
 '-' or '+' to adjust brightness.
@@ -26,17 +26,19 @@ valid <option> arguments: - + [ ] 0 9 p
 '0' or '9' to use the minimium or maximum brightness
 ```
 
-### works best with
+### Works best with
 - [3RVX](https://3rvx.com/)
-    Example: settings - Hotkeys - + - Action - Run - <Path to `brightness.+.exe`>
+    - Example: 
+        - settings - Hotkeys - "+" - Action - Run - <Path to `LG-Ultrafine-Brightness.+.exe` (duplicate, rename yourself)>
+        - Press the hotkey you set, brightness changes! 🎉
 - Or any other hotkey applications with `Run...` capabilities
 
 
 ## History 
-- 2.1
-    have it not poping up any window, on running the app, when there's no message to show up.
-- 2.0
-    this branch
+- 2.1:
+    - have it not poping up any window, on running the app, when there's no message to show up.
+- 2.0:
+    - this branch
 
 ## Development
 ### Build
