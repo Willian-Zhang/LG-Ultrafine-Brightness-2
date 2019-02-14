@@ -1,7 +1,9 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <conio.h>
 #include <iterator>
+#include <string> 
 #include "hidapi.h"
 
 using std::vector;
@@ -97,13 +99,28 @@ void PressEnterToContinue(){
 	std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n');
 }
 
-const auto help_string = """Run application brightness.exe <option> or brightness.<option>.exe\n\
+const auto help_string = """Run application as `brightness.exe <option>` or `brightness.<option>.exe`\n\
 	valid <option> argument: - + [ ] 0 9 p\n\
 	'-' or '+' to adjust brightness.\n\
 	'[' or: ']' to fine tune.\n\
 	'p' to print infomation\n\
 	'0' or '9' to use the minimium or maximum brightness\n\
 """;
+std::string brightness_to_string(uint16_t brightness) {
+	return std::to_string( int((float(brightness) / 54000) * 100.0) );
+}
+
+#include <windows.h>
+void win_dialog(const char* text,const char* title="LG Ultrafine Brightness") {
+	if (GetConsoleWindow()) {
+		std::cout << text;
+	}else{
+		MessageBox(NULL, text, title, MB_OK);
+	}
+}
+void win_dialog(const std::string text, const char* title = "LG Ultrafine Brightness") {
+	win_dialog(text.c_str(), title);
+}
 
 int main(int argc, char *argv[]) {
 	hid_device *handle;
@@ -114,7 +131,7 @@ int main(int argc, char *argv[]) {
 
 	handle = hid_open(vendor_id, product_id, NULL);
 	if (!handle) {
-		printf("unable to open device\n");
+		win_dialog("unable to open device\n");
 		return 1;
 	}
 
@@ -144,13 +161,14 @@ int main(int argc, char *argv[]) {
 			}
 		}
 		if (!has_arg) {
-			std::cout << "ERROR: You need at least one argument." << std::endl;
+			win_dialog("ERROR: You need at least one argument.");
 		}
 	}
 	else {
 		option = *argv[1];
 	}
 
+	std::stringstream ss;
 	auto need_confirm_on_exit = false;
 	switch (option) {
 	case '+':
@@ -178,17 +196,20 @@ int main(int argc, char *argv[]) {
 		set_brightness(handle, brightness);
 		break;
 	case 'p':
-		printf("Current brightness = %d%4s\r", int((float(brightness) / 54000) * 100.0), " ");
+		ss << "Current brightness = " << brightness_to_string(brightness) << "    \r" << std::endl;
+		win_dialog(ss.str());
 		need_confirm_on_exit = true;
 		break;
 	case 'h':
-		printf("Current brightness = %d%4s\r", int((float(brightness) / 54000) * 100.0), " ");
-		std::cout << help_string;
+		ss << "Current brightness = " << brightness_to_string(brightness) << "    \r" << std::endl;
+		ss << help_string;
+		win_dialog(ss.str());
 		need_confirm_on_exit = true;
 		break;
 	default:
-		std::cout << "Error: invalid argument!" << std::endl;
-		std::cout << help_string;
+		ss << "Error: invalid argument!" << std::endl;
+		ss << help_string;
+		win_dialog(ss.str());
 		need_confirm_on_exit = true;
 	}
 
@@ -199,4 +220,110 @@ int main(int argc, char *argv[]) {
 		PressEnterToContinue();
 	}
 	return 0;
+}
+
+
+
+PCHAR*
+CommandLineToArgvA(
+	PCHAR CmdLine,
+	int* _argc
+)
+{
+	PCHAR* argv;
+	PCHAR  _argv;
+	ULONG   len;
+	ULONG   argc;
+	CHAR   a;
+	ULONG   i, j;
+
+	BOOLEAN  in_QM;
+	BOOLEAN  in_TEXT;
+	BOOLEAN  in_SPACE;
+
+	len = strlen(CmdLine);
+	i = ((len + 2) / 2) * sizeof(PVOID) + sizeof(PVOID);
+
+	argv = (PCHAR*)GlobalAlloc(GMEM_FIXED,
+		i + (len + 2) * sizeof(CHAR));
+
+	_argv = (PCHAR)(((PUCHAR)argv) + i);
+
+	argc = 0;
+	argv[argc] = _argv;
+	in_QM = FALSE;
+	in_TEXT = FALSE;
+	in_SPACE = TRUE;
+	i = 0;
+	j = 0;
+
+	while (a = CmdLine[i]) {
+		if (in_QM) {
+			if (a == '\"') {
+				in_QM = FALSE;
+			}
+			else {
+				_argv[j] = a;
+				j++;
+			}
+		}
+		else {
+			switch (a) {
+			case '\"':
+				in_QM = TRUE;
+				in_TEXT = TRUE;
+				if (in_SPACE) {
+					argv[argc] = _argv + j;
+					argc++;
+				}
+				in_SPACE = FALSE;
+				break;
+			case ' ':
+			case '\t':
+			case '\n':
+			case '\r':
+				if (in_TEXT) {
+					_argv[j] = '\0';
+					j++;
+				}
+				in_TEXT = FALSE;
+				in_SPACE = TRUE;
+				break;
+			default:
+				in_TEXT = TRUE;
+				if (in_SPACE) {
+					argv[argc] = _argv + j;
+					argc++;
+				}
+				_argv[j] = a;
+				j++;
+				in_SPACE = FALSE;
+				break;
+			}
+		}
+		i++;
+	}
+	_argv[j] = '\0';
+	argv[argc] = NULL;
+
+	(*_argc) = argc;
+	return argv;
+}
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+{
+
+	int argCount;
+
+	auto szArgList = CommandLineToArgvA(GetCommandLine(), &argCount);
+	if (szArgList == NULL)
+	{
+		MessageBox(NULL, "Unable to parse command line", "Error", MB_OK);
+		return 10;
+	}
+
+	auto code = main(argCount, szArgList);
+
+	LocalFree(szArgList);
+
+	return code;
 }
