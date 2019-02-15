@@ -1,18 +1,20 @@
 #include <iostream>
+#include <stdio.h>
 #include <sstream>
 #include <vector>
 #include <conio.h>
 #include <iterator>
 #include <string> 
 
+#include <windows.h>
+
 #include "LGUltrafine.h"
 #include "wincppextensions.h"
 
-#include <windows.h>
 
 const auto is_console = GetConsoleWindow() != nullptr;
 
-#include <stdio.h>
+
 void PressEnterToContinue(){
 	if (is_console) {
 		int c;
