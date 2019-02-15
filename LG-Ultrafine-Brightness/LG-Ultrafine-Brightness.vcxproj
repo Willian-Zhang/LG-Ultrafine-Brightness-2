@@ -132,6 +132,7 @@
     <Library Include="hidapi.lib" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="hidapi.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
