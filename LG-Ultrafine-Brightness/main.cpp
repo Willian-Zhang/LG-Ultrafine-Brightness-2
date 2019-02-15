@@ -30,7 +30,7 @@ Run application as `brightness.exe <option>` or `brightness.<option>.exe`\n\
 		'-' or '+' to adjust brightness.\n\
 		'[' or: ']' to fine tune.\n\
 		'p' to print infomation\n\
-		'0' or '9' to use the minimium or maximum brightness\n\
+		'0' ~ '9' to use the 0% thru 100% level brightness\n\
 		'h' to show this info\
 ";
 

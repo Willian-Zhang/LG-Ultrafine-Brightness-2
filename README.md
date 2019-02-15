@@ -11,7 +11,7 @@ Thanks @csujedihy, @unknownzerx.
 The original tool was unable to with simple option or hotkey activation, so here it is.
 
 ## Download
-[Link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness/releases/download/v2.1/brightness-2-1.zip)
+[Link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness-2/releases/download/v2.5.1/brightness-2-5-1.zip)
 
 ## Usage
 Just double click.
@@ -19,11 +19,12 @@ Just double click.
 ### Want more details?
 Run application as `LG-Ultrafine-Brightness.exe <option>` (shortcut) or `LG-Ultrafine-Brightness.<option>.exe` (rename)
 ```
-valid <option> arguments: - + [ ] 0 9 p
-'-' or '+' to adjust brightness.
-'[' or: ']' to fine tune.
-'p' to print infomation
-'0' or '9' to use the minimium or maximum brightness
+	Valid <option> arguments: `-` `+` `[` `]` `0` `9` `p` `h`
+		'-' or '+' to adjust brightness.
+		'[' or: ']' to fine tune.
+		'p' to print infomation
+		'0' ~ '9' to use the 0% thru 100% level brightness
+		'h' to show this info
 ```
 
 ### Works best with
@@ -35,6 +36,9 @@ valid <option> arguments: - + [ ] 0 9 p
 
 
 ## History 
+- 2.5:
+	- Optimized Speed
+	- Option 0~9
 - 2.1:
     - have it not poping up any window, on running the app, when there's no message to show up.
 - 2.0:
