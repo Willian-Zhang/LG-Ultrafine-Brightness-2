@@ -123,10 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LGUltraFine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="wincppextensions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hidapi.h" />
+    <ClInclude Include="LGUltraFine.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="wincppextensions.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="hidapi.lib" />
@@ -134,6 +139,9 @@
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="hidapi.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LG-Ultrafine-Brightness.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
