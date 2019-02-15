@@ -26,16 +26,13 @@ void PressEnterToContinue(){
 
 const auto help_string = "\
 Run application as `brightness.exe <option>` or `brightness.<option>.exe`\n\
-	Valid <option> arguments: - + [ ] 0 9 p\n\
+	Valid <option> arguments: - + [ ] 0 9 p h\n\
 		'-' or '+' to adjust brightness.\n\
 		'[' or: ']' to fine tune.\n\
 		'p' to print infomation\n\
 		'0' or '9' to use the minimium or maximum brightness\n\
+		'h' to show this info\
 ";
-std::string brightness_to_string(uint16_t brightness) {
-	return std::to_string( int((float(brightness) / 54000) * 100.0) );
-}
-
 
 void win_dialog(const char* text, const char* title="LG Ultrafine Brightness") {
 	if (is_console) {
@@ -66,20 +63,23 @@ char get_option_from_name(char* const name) {
 	}
 	return NULL;
 }
-
+inline const std::string string_from_level(const float level) {
+	return std::to_string(int(level * 100));
+}
 int main(int argc, char *argv[]) {
 	auto ultraFine = std::make_unique<LGUltraFine>();
+	auto should_confirm_on_exit = false;
 
-
-	auto brightness = ultraFine->get_brightness();
-
+	std::stringstream ss;
 	char option = 'h';
-
 	if (argc < 2) {
 		const auto name = argv[0];
 		const auto candidate = get_option_from_name(name);
-		if (!candidate)
-			win_dialog("ERROR: You need at least one argument.");
+		if (!candidate) {
+			ss << "Current brightness: " << string_from_level(ultraFine->get_level()) << "%    \r" << std::endl;
+			win_dialog(ss.str());
+			should_confirm_on_exit = true;
+		}
 		else
 			option = candidate;
 	}
@@ -87,45 +87,40 @@ int main(int argc, char *argv[]) {
 		option = *argv[1];
 	}
 
-	std::stringstream ss;
-	auto need_confirm_on_exit = false;
 	switch (option) {
 	case '+':
-		brightness = ultraFine->next_step(brightness, LGUltraFine::big_steps);
-		ultraFine->set_brightness(brightness);
+		ultraFine->set_level_up();
 		break;
 	case '-':
-		brightness = ultraFine->prev_step(brightness, LGUltraFine::big_steps);
-		ultraFine->set_brightness(brightness);
+		ultraFine->set_level_down();
 		break;
 	case '[':
-		brightness = ultraFine->prev_step(brightness, LGUltraFine::small_steps);
-		ultraFine->set_brightness(brightness);
+		ultraFine->set_level_up(0.02);
 		break;
 	case ']':
-		brightness = ultraFine->next_step(brightness, LGUltraFine::small_steps);
-		ultraFine->set_brightness(brightness);
+		ultraFine->set_level_down(0.02);
 		break;
-	// TODO: 
+	case '0': case '1': case '2': case '3': case '4':
+	case '5': case '6': case '7': case '8': case '9':
+		ultraFine->set_level( 0.1f * (option - '0') / 0.9f );
+		break;
 	case 'p':
-		ss << "Current brightness = " << brightness_to_string(brightness) << "    \r" << std::endl;
+		ss << "Current brightness: " << string_from_level(ultraFine->get_level()) << "%    \r" << std::endl;
 		win_dialog(ss.str());
-		need_confirm_on_exit = true;
+		should_confirm_on_exit = true;
 		break;
 	case 'h':
-		ss << "Current brightness = " << brightness_to_string(brightness) << "    \r" << std::endl;
-		ss << help_string;
-		win_dialog(ss.str());
-		need_confirm_on_exit = true;
+		win_dialog(help_string);
+		should_confirm_on_exit = true;
 		break;
 	default:
 		ss << "Error: invalid argument!" << std::endl;
 		ss << help_string;
 		win_dialog(ss.str());
-		need_confirm_on_exit = true;
+		should_confirm_on_exit = true;
 	}
 
-	if (need_confirm_on_exit) {
+	if (should_confirm_on_exit) {
 		PressEnterToContinue();
 	}
 	return 0;

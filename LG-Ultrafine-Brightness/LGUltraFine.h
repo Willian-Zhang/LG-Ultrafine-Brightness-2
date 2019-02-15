@@ -1,18 +1,26 @@
 #pragma once
 #include <vector>
+#include <exception>
 #include "hidapi.h"
-using std::vector;
 
+class LGUltraFineException : public std::runtime_error {};
+class LGConnectError : LGUltraFineException {};
+class LGCommunicationError : LGUltraFineException {};
+
+using std::vector;
 class LGUltraFine{
 private:
 	hid_device* handle;
+	inline uint16_t get_brightness();
+	inline void  set_brightness(uint16_t val);
 public:
 	LGUltraFine();
 	~LGUltraFine();
-	uint16_t next_step(uint16_t val, const vector<uint16_t> &steps);
-	uint16_t prev_step(uint16_t val, const vector<uint16_t> &steps);
-	uint16_t get_brightness();
-	void set_brightness(uint16_t val);
+
+	void set_level_up(const float step=0.075);
+	void set_level_down(const float step = 0.075);
+	void set_level(const float level);
+	float get_level();
 
 public:
 	static const std::vector<uint16_t> small_steps;
