@@ -65,7 +65,10 @@ Run application as `LG-Ultrafine-Brightness.exe <option>` (shortcut) or `LG-Ultr
 
 
 ## History 
+- 2.5.1
+	- fix help doc
 - 2.5:
+	- Rearchitected 
 	- Optimized Speed
 	- Option 0~9
 - 2.1:
