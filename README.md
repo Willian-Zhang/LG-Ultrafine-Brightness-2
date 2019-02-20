@@ -20,7 +20,7 @@ Just double click.
 
 ### Sample usages
 #### Show brightness
-1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/
+1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/`
 1. Right click `LG-Ultrafine-Brightness.exe` > Send to > Desktop (create shortcut)
 1. Right click `LG-Ultrafine-Brightness.exe shortcut` on Desktop > Properties > `Target:` > add `␣p` (space then `p`) at the very end.
 
@@ -31,7 +31,7 @@ Same as in `Show brightness` execpt instead of add `p` to the end, add `9` to th
 
 #### Use Crtl(control) + F2 to brightness up in game
 - Install [3RVX](https://3rvx.com/)(a volume among other controls with keyboard shortcut utility) first
-1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/
+1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/`
 1. Duplicate `LG-Ultrafine-Brightness.exe` and rename the new one as `LG-Ultrafine-Brightness.+.exe`
 1. Test if brightness goes up when open up `LG-Ultrafine-Brightness.+.exe`
 1. Modify 3RVX Settings
