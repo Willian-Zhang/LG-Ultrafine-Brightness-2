@@ -22,12 +22,12 @@ Just double click.
 #### Show brightness
 1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/
 1. Right click `LG-Ultrafine-Brightness.exe` > Send to > Desktop (create shortcut)
-1. Right click `LG-Ultrafine-Brightness.exe shortcut` on Desktop > Properties > `Target:` > add ` p` at the very end.
+1. Right click `LG-Ultrafine-Brightness.exe shortcut` on Desktop > Properties > `Target:` > add `␣p` (space then `p`) at the very end.
 
 Now brighness would showup upon open the desktop shortcut.
 
 #### Change to maximium brightness upon runnning
-Same as in `Show brightness` execpt instead of add ` p` to the end, add ` 9` to the end.
+Same as in `Show brightness` execpt instead of add `p` to the end, add `9` to the end.
 
 #### Use Crtl(control) + F2 to brightness up in game
 - Install [3RVX](https://3rvx.com/)(a volume among other controls with keyboard shortcut utility) first
