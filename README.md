@@ -1,21 +1,51 @@
 # LG-Ultrafine-Brightness 2
 
-A tool to adjust brightness of LG Ultrafine 4k/5K on **Windows** without the help of Bootcamp.
+A tool to adjust brightness of LG Ultrafine 4k/5K **silently** on **Windows** without the help of Bootcamp.
 
 The program simply send set feature report to the device via USB and then the LG 4/5K monitor adjust the brightness upon receiving such reports.
 
-This project is derived from [https://github.com/csujedihy/LG-Ultrafine-Brightness](https://github.com/csujedihy/LG-Ultrafine-Brightness) which is derived from [https://github.com/unknownzerx/lguf-brightness](https://github.com/unknownzerx/lguf-brightness).
-
-Thanks @csujedihy, @unknownzerx.
-
-The original tool was unable to with simple option or hotkey activation, so here it is.
+Thanks to @[csujedihy](https://github.com/csujedihy/), @[unknownzerx](https://github.com/unknownzerx/),
+This project is derived from [csujedihy/LG-Ultrafine-Brightness](https://github.com/csujedihy/LG-Ultrafine-Brightness) which is also derived from [unknownzerx/lguf-brightness](https://github.com/unknownzerx/lguf-brightness).
 
 ## Download
 [Link to zip](https://github.com/Willian-Zhang/LG-Ultrafine-Brightness-2/releases/download/v2.5.1/brightness-2-5-1.zip)
 
+## Features
+- **Adjust brightness silently** in background, thus Apps runing in forground won't be interupted
+- Use _shortcut_ or _filename_ as **option** to activate brightness adjustment
+- Redesigned in memory and **speed** conservative manner
+
 ## Usage
 Just double click.
 
+### Sample usages
+#### Show brightness
+1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/
+1. Right click `LG-Ultrafine-Brightness.exe` > Send to > Desktop (create shortcut)
+1. Right click `LG-Ultrafine-Brightness.exe shortcut` on Desktop > Properties > `Target:` > add ` p` at the very end.
+
+Now brighness would showup upon open the desktop shortcut.
+
+#### Change to maximium brightness upon runnning
+Same as in `Show brightness` execpt instead of add ` p` to the end, add ` 9` to the end.
+
+#### Use Crtl(control) + F2 to brightness up in game
+- Install [3RVX](https://3rvx.com/)(a volume among other controls with keyboard shortcut utility) first
+1. Unzip and copy the files into `C://Program Files (x86)/LGBrightness/
+1. Duplicate `LG-Ultrafine-Brightness.exe` and rename the new one as `LG-Ultrafine-Brightness.+.exe`
+1. Test if brightness goes up when open up `LG-Ultrafine-Brightness.+.exe`
+1. Modify 3RVX Settings
+	1. Right click 3RVX > settings
+	1. Click `Hotkeys` Tab
+	1. Click `+` to add a new Action
+	1. Click Hotkey, then press `Ctrl + F2` to register that as the new hotkey
+	1. Select `Run` in `Action`
+	1. Select the `LG-Ultrafine-Brightness.+.exe` 
+	
+_You may also want to create one for `brightness down`, use `LG-Ultrafine-Brightness.-.exe` and `Ctrl + F1` or whatever hotkey you want_
+
+Press the `Crtl(control) + F2` you set, brightness changes! 🎉
+ 
 ### Want more details?
 Run application as `LG-Ultrafine-Brightness.exe <option>` (shortcut) or `LG-Ultrafine-Brightness.<option>.exe` (rename)
 ```
@@ -30,8 +60,7 @@ Run application as `LG-Ultrafine-Brightness.exe <option>` (shortcut) or `LG-Ultr
 ### Works best with
 - [3RVX](https://3rvx.com/)
     - Example: 
-        - settings - Hotkeys - "+" - Action - Run - <Path to `LG-Ultrafine-Brightness.+.exe` (duplicate, rename yourself)>
-        - Press the hotkey you set, brightness changes! 🎉
+        - See `Sample usages`
 - Or any other hotkey applications with `Run...` capabilities
 
 
